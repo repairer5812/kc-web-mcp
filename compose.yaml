@@ -12,6 +12,7 @@ services:
     cpus: ${MCP_CPUS:-1}
     environment:
       PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-}
+      TUNNEL_HTTP_HOST_HEADER: localhost
     volumes:
       - state:/state
       - workspace:/workspace

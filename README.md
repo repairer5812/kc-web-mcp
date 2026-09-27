@@ -73,7 +73,7 @@ docker compose exec -T runtime cat /state/oauth-owner.token
 임시 터널 확인 후 본인 Cloudflare 계정의 Named Tunnel과 소유 도메인으로 바꾼다.
 
 1. `.env.example`을 `.env`로 복사하고 `PUBLIC_BASE_URL=https://본인서브도메인`을 설정한다.
-2. Cloudflare 터널의 공개 호스트를 해당 도메인 → `http://127.0.0.1:8766`으로 설정한다. 터널 컨테이너는 런타임의 네트워크 공간을 공유한다.
+2. Cloudflare 터널의 공개 호스트를 해당 도메인 → `http://127.0.0.1:8766`으로 설정하고 HTTP Host Header를 `localhost`로 지정한다. 터널 컨테이너는 런타임의 네트워크 공간을 공유한다. Go MCP SDK의 localhost Host 검사와 일치시키는 설정이다. 임시 터널에는 같은 설정이 환경변수로 적용된다.
 3. 터널 토큰을 `cloudflare-tunnel.token`에 저장한다. 파일을 Git에 올리거나 채팅에 공유하지 않는다.
 4. `bash scripts/install.sh --stable`로 실행하고 고정 `/mcp` URL을 ChatGPT에 등록한다.
 
