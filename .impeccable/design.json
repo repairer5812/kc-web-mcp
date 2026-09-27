@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-27T12:47:26.554Z",
+  "title": "Design System: Portlane",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Portlane Blue"
+      },
+      "rail": {
+        "role": "neutral",
+        "displayName": "Cool Rail"
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "White Canvas"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Navy Ink"
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Slate Text"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Fine Divider"
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "화면 제목. 자체 제공 Pretendard를 Portlane family로 사용."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "주요 섹션 제목."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "한국어 본문과 설명."
+      },
+      "label": {
+        "displayName": "Action Label",
+        "purpose": "주요 행동의 짧은 문구."
+      },
+      "code": {
+        "displayName": "System Mono",
+        "purpose": "기술 도움말의 명령."
+      }
+    },
+    "shadows": [
+      {
+        "name": "primary-hover",
+        "value": "0 4px 10px #17388920",
+        "purpose": "주요 버튼의 hover에만 사용. 정지 패널은 그림자 없음."
+      }
+    ],
+    "motion": [
+      {
+        "name": "primary-transition",
+        "value": "background .18s ease,box-shadow .18s ease",
+        "purpose": "주요 버튼 상태 전환."
+      },
+      {
+        "name": "disclose",
+        "value": ".22s cubic-bezier(.16,1,.3,1)",
+        "purpose": "도움말을 여는 clip-path 전환. reduced-motion에서 비활성화."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "1600px"
+      },
+      {
+        "name": "compact",
+        "value": "1100px"
+      },
+      {
+        "name": "mobile",
+        "value": "760px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "주요 행동. hover·active·disabled·키보드 초점을 구현한다.",
+      "html": "<button class=\"ds-primary\">연결 승인하기 <svg aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M5 12h14 m-5-5 5 5-5 5\"/></svg></button>",
+      "css": ".ds-primary{font-family:Portlane,'Malgun Gothic',sans-serif;font-size:16px;line-height:1.55;color:var(--ink,#122143);border:0;border-radius:5px;background:var(--accent,#2457d6);color:white;padding:12px 18px;min-height:44px;display:inline-flex;gap:14px;align-items:center;justify-content:center;font-size:15px;font-weight:650;cursor:pointer;transition:background .18s ease,box-shadow .18s ease}.ds-primary svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.ds-primary:hover{background:var(--accent-hover,#1945b7);box-shadow:0 4px 10px #17388920}.ds-primary:active{background:#133992}.ds-primary:disabled{background:#526ca5;cursor:wait}.ds-primary:focus-visible{outline:3px solid var(--accent,#2457d6);outline-offset:4px}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+    },
+    {
+      "name": "Secondary Action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "가는 경계선으로 구분하는 보조 링크 행동.",
+      "html": "<a class=\"ds-secondary\" href=\"/\">서버 홈으로 돌아가기</a>",
+      "css": ".ds-secondary{font-family:Portlane,'Malgun Gothic',sans-serif;font-size:16px;line-height:1.55;color:var(--ink,#122143);border:1px solid #b9c6d8;border-radius:5px;text-decoration:none;padding:10px 14px;font-size:14px;min-height:44px;display:inline-flex;align-items:center}.ds-secondary:hover{background:var(--rail,#f0f3f7)}.ds-secondary:focus-visible{outline:3px solid var(--accent,#2457d6);outline-offset:4px}"
+    },
+    {
+      "name": "Password Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "비밀번호 입력, 보조 설명, 오류 경계. 표시 버튼의 상태 변경은 approval.js가 담당한다.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-token\">Owner token</label><div class=\"ds-field-wrap\"><input id=\"ds-token\" type=\"password\" placeholder=\"서버의 인증키를 붙여넣으세요\" aria-describedby=\"ds-help\"><button type=\"button\" class=\"ds-reveal\" aria-label=\"인증키 표시\" aria-pressed=\"false\"><svg aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg></button></div><p id=\"ds-help\">ChatGPT 비밀번호가 아닌 서버 소유자 인증키입니다.</p></div>",
+      "css": ".ds-field{font-family:Portlane,'Malgun Gothic',sans-serif;font-size:16px;line-height:1.55;color:var(--ink,#122143);}.ds-field label{display:block;font-weight:620;margin-bottom:8px}.ds-field-wrap{position:relative}.ds-field input{font:inherit;width:100%;min-height:46px;padding:10px 52px 10px 14px;border:1px solid #b9c6d8;border-radius:5px;background:white;color:var(--ink,#122143);caret-color:var(--accent,#2457d6)}.ds-field input::placeholder{color:#65778f}.ds-field input[aria-invalid=true]{border-color:var(--error,#a52b2b)}.ds-field p{font-size:14px;color:var(--muted,#52647c);margin:7px 0 0}.ds-reveal{position:absolute;right:4px;top:3px;width:40px;height:40px;display:grid;place-items:center;background:transparent;border:0;border-radius:4px;color:var(--muted,#52647c);cursor:pointer}.ds-reveal:hover{background:var(--rail,#f0f3f7);color:var(--ink,#122143)}.ds-reveal svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.ds-field input:focus-visible{outline:3px solid var(--accent,#2457d6);outline-offset:4px}.ds-reveal:focus-visible{outline:3px solid var(--accent,#2457d6);outline-offset:4px}"
+    },
+    {
+      "name": "Bordered Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "경계선과 내부 여백으로 구분하는 평평한 표면.",
+      "html": "<section class=\"ds-panel\"><h2>서버 소유자 인증</h2><p>서버 소유자 인증키를 입력합니다.</p></section>",
+      "css": ".ds-panel{font-family:Portlane,'Malgun Gothic',sans-serif;font-size:16px;line-height:1.55;color:var(--ink,#122143);border:1px solid var(--line,#dae1ea);border-radius:var(--radius,8px);padding:20px 24px}.ds-panel h2{margin:0;font-size:24px;line-height:1.4;letter-spacing:-.02em;font-weight:720}.ds-panel p{margin:8px 0 0;color:var(--muted,#52647c)}"
+    },
+    {
+      "name": "Authority Notice",
+      "kind": "custom",
+      "refersTo": "notice",
+      "description": "의미색 표면과 선형 아이콘을 함께 사용하는 안내.",
+      "html": "<p class=\"ds-notice\"><svg aria-hidden=\"true\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v6 M12 16v1\"/></svg><span>명령 실행은 작업 공간과 실행 환경을 변경할 수 있는 권한입니다.</span></p>",
+      "css": ".ds-notice{font-family:Portlane,'Malgun Gothic',sans-serif;font-size:16px;line-height:1.55;color:var(--ink,#122143);margin:0;background:var(--notice,#fff7ea);color:var(--notice-ink,#754a16);border-radius:var(--radius,8px);padding:12px 16px;display:flex;gap:14px;align-items:center;font-size:14px}.ds-notice svg{width:22px;height:22px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}"
+    },
+    {
+      "name": "Progress Navigation",
+      "kind": "nav",
+      "description": "완료·현재·다음 상태를 선형 표식과 텍스트로 구분한다.",
+      "html": "<ol class=\"ds-steps\" aria-label=\"진행 과정\"><li class=\"ds-complete\"><span class=\"ds-mark\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path d=\"m7 12 3 3 7-7\"/></svg></span><strong>요청 확인</strong></li><li class=\"ds-current\" aria-current=\"step\"><span class=\"ds-mark\" aria-hidden=\"true\"><span></span></span><strong>소유자 인증</strong></li><li><span class=\"ds-mark\" aria-hidden=\"true\"></span><strong>채팅으로 돌아가기</strong></li></ol>",
+      "css": ".ds-steps{font-family:Portlane,'Malgun Gothic',sans-serif;font-size:16px;line-height:1.55;color:var(--ink,#122143);list-style:none;margin:0;padding:0}.ds-steps li{display:flex;gap:20px;position:relative;padding-bottom:38px;min-height:92px}.ds-steps li:not(:last-child):after{content:'';position:absolute;top:30px;bottom:5px;left:12px;width:1px;background:#b8c4d5}.ds-mark{width:26px;height:26px;border:1px solid #9dadc2;border-radius:50%;display:grid;place-items:center;margin-top:2px;flex-shrink:0}.ds-complete .ds-mark{background:#536f9b;border-color:#536f9b}.ds-mark svg{width:20px;height:20px;fill:none;stroke:white;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.ds-current .ds-mark{background:var(--accent,#2457d6);border-color:var(--accent,#2457d6)}.ds-current .ds-mark span{width:6px;height:6px;background:white;border-radius:50%}.ds-current strong{color:var(--accent,#2457d6)}.ds-steps strong{font-size:18px;font-weight:680}"
+    },
+    {
+      "name": "Disclosure",
+      "kind": "custom",
+      "description": "네이티브 펼침으로 추가 도움말을 제공하며 reduced-motion을 지원한다.",
+      "html": "<details class=\"ds-disclosure\"><summary>인증키는 어디서 찾나요?</summary><p>서버의 Portlane 설치 폴더에서 확인합니다. 인증키는 이 서버의 승인 화면에만 입력하세요.</p></details>",
+      "css": ".ds-disclosure{font-family:Portlane,'Malgun Gothic',sans-serif;font-size:16px;line-height:1.55;color:var(--ink,#122143);font-size:14px}.ds-disclosure summary{width:fit-content;cursor:pointer}.ds-disclosure p{color:var(--muted,#52647c);margin:10px 0 0;max-width:75ch}.ds-disclosure summary:focus-visible{outline:3px solid var(--accent,#2457d6);outline-offset:4px}.ds-disclosure[open]{animation:ds-disclose .22s cubic-bezier(.16,1,.3,1)}@keyframes ds-disclose{from{clip-path:inset(0 0 22% 0)}to{clip-path:inset(0)}}@media(prefers-reduced-motion:reduce){.ds-disclosure[open]{animation:none}}"
+    },
+    {
+      "name": "Error Message",
+      "kind": "custom",
+      "refersTo": "error",
+      "description": "오류 설명은 글과 의미색을 함께 사용한다.",
+      "html": "<div class=\"ds-error\" role=\"alert\"><strong>인증키가 일치하지 않습니다.</strong><p>이 서버의 Owner token을 다시 확인하고 붙여넣으세요.</p></div>",
+      "css": ".ds-error{font-family:Portlane,'Malgun Gothic',sans-serif;font-size:16px;line-height:1.55;color:var(--ink,#122143);background:var(--error-bg,#fff1f1);color:var(--error,#a52b2b);padding:14px;border-radius:5px;font-size:14px}.ds-error p{margin:4px 0 0}"
+    }
+  ],
+  "narrative": {
+    "northStar": "명료한 작업 공간",
+    "overview": "Portlane의 시각 언어는 읽기 쉬운 한국어와 절제된 선, 차가운 중립 배경으로 정보를 정돈한다. 흰 바탕과 남색 글자가 기본이며 파란색은 현재 상태와 주요 행동을 드러낸다.\n\n자체 심벌과 자체 제공 Pretendard로 독립적인 정체성을 유지한다. 개별 화면의 구성과 진행 순서는 direction.md에 남긴다.",
+    "keyCharacteristics": [
+      "한국어 중심의 산세리프 위계",
+      "흰 표면, 차가운 회색 보조 영역, 남색 본문",
+      "주요 행동과 현재 상태를 나타내는 파란 강조",
+      "얇은 경계선과 완만한 모서리",
+      "짧은 상태 전환과 명확한 키보드 초점"
+    ],
+    "rules": [],
+    "dos": [
+      "Do 자체 제공 Pretendard와 한국어 문구를 유지한다.",
+      "Do 기본 표면의 경계선과 톤 차이로 영역을 구분한다.",
+      "Do 주요 행동, 현재 상태, 초점에 같은 파란 강조를 사용한다.",
+      "Do 키보드 초점, 오류 설명, reduced-motion 대응을 유지한다."
+    ],
+    "donts": [
+      "Don't OpenAI·ChatGPT 로고를 Portlane의 자체 브랜드로 사용한다.",
+      "Don't 오류나 진행 상태를 색만으로 전달한다.",
+      "Don't 외부 폰트 요청을 추가하거나 한국어 글리프를 확인하지 않은 장식 글꼴로 바꾼다.",
+      "Don't 펼침 도움말을 위해 필수 안내나 주요 행동을 숨긴다."
+    ]
+  }
+}
