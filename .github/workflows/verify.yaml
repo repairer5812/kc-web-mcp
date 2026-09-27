@@ -16,7 +16,8 @@ jobs:
           python-version: '3.12'
       - run: npm ci --ignore-scripts
       - run: bash -n scripts/entrypoint.sh scripts/install.sh
-      - run: python -m py_compile scripts/configure.py scripts/smoke_test.py
+      - run: python -m py_compile scripts/configure.py scripts/smoke_test.py scripts/customize.py
       - run: python scripts/smoke_test.py node_modules/@starlove7/spacedock/npm/dist/linux-amd64/spacedock
       - run: docker compose config --quiet
       - run: docker compose build
+      - run: docker run --rm --read-only --cap-drop ALL --security-opt no-new-privileges:true --memory 256m --cpus 0.5 --pids-limit 256 --tmpfs /tmp:uid=1000,gid=1000,mode=1777,size=256m --entrypoint python3 kc-web-mcp-runtime /opt/kc-mcp/scripts/smoke_test.py /usr/local/bin/spacedock --output /tmp/smoke.json

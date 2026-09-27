@@ -20,7 +20,7 @@
 <main id="main">
 <p class="top-note">웹 채팅에서 이어가는 내 프로젝트 작업 공간</p>
 <header class="page-heading"><h1>{{if .Pending}}연결 요청을 확인하세요{{else}}내 서버와 채팅을 연결하세요{{end}}</h1><p>웹 채팅에서 프로젝트 파일을 수정하고 테스트를 실행합니다.</p></header>
-{{if .Pending}}<dl class="request"><div><dt>연결 앱</dt><dd>{{.Client}}</dd></div><div><dt>돌아갈 주소</dt><dd>{{.Destination}}</dd></div><div><dt>범위</dt><dd>프로젝트 전용 작업 공간</dd></div></dl>{{else}}<div class="start-note"><p>채팅 서비스의 MCP 설정에 이 서버를 추가하면 연결 요청이 이곳에 표시됩니다.</p><p>지금은 승인 대기 중인 연결 요청이 없습니다.</p></div>{{end}}
+{{if .Pending}}<dl class="request"><div><dt>연결 요청</dt><dd class="connection-target"><span>{{.Client}}</span><span class="callback-host">승인 후 반환 주소: {{.Destination}}</span></dd></div><div><dt>범위</dt><dd>프로젝트 전용 작업 공간</dd></div></dl>{{else}}<div class="start-note"><p>채팅 서비스의 MCP 설정에 이 서버를 추가하면 연결 요청이 이곳에 표시됩니다.</p><p>지금은 승인 대기 중인 연결 요청이 없습니다.</p></div>{{end}}
 <section aria-labelledby="permissions-title" class="permissions"><h2 id="permissions-title">이 연결에 허용되는 작업</h2><ul class="permission-list">
 <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5Z M14 3v5h5 M8 12h8 M8 16h5"/></svg><strong>파일 읽기·수정</strong><p>작업 공간의 파일을 읽고 수정하거나 새로 만듭니다.</p></li>
 <li><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 8 4 4-4 4 M13 16h4"/></svg><strong>명령·테스트 실행</strong><p>작업 공간에서 명령을 실행하고 테스트를 수행합니다.</p></li>
@@ -36,8 +36,8 @@
 <label for="owner-token">Owner token</label><div class="token-field"><input id="owner-token" name="owner_token" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" required aria-describedby="token-help" placeholder="서버의 인증키를 붙여넣으세요" {{if .Invalid}}aria-invalid="true" autofocus{{end}}><button class="reveal" type="button" aria-label="인증키 표시" aria-pressed="false" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
 <p id="token-help">ChatGPT 비밀번호가 아닌 서버 소유자 인증키입니다.</p>
 <details class="token-guide"><summary>인증키는 어디서 찾나요?</summary><p>서버의 Portlane 설치 폴더에서 다음 명령으로 확인합니다. 인증키는 이 서버의 승인 화면에만 입력하세요.</p><code>sudo docker compose exec runtime cat /state/oauth-owner.token</code><p>서버 접근 권한이 없다면 운영자에게 연결 승인을 요청하세요.</p></details>
-</div><div class="actions"><a class="cancel" href="/">연결하지 않고 돌아가기</a><button class="primary" type="submit"><span>연결 승인하기</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14 m-5-5 5 5-5 5"/></svg></button></div>
-<p class="return-note">승인 후 {{.Destination}}의 연결 화면으로 돌아갑니다.</p></form></section>
+</div><div class="actions"><a class="cancel" href="/">서버 홈으로 돌아가기</a><button class="primary" type="submit"><span>연결 승인하기</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14 m-5-5 5 5-5 5"/></svg></button></div>
+</form></section>
 {{else}}<div class="actions landing-actions"><a class="primary" href="https://github.com/repairer5812/kc-web-mcp#readme" target="_blank" rel="noopener noreferrer">설치·연결 안내 보기<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14 m-5-5 5 5-5 5"/></svg></a></div>{{end}}
-</main>
+<footer class="mobile-footer"><p><a href="https://github.com/repairer5812/kc-web-mcp" target="_blank" rel="noopener noreferrer">소스 코드</a> · <a href="https://github.com/repairer5812/kc-web-mcp/blob/main/PRIVACY.md" target="_blank" rel="noopener noreferrer">개인정보 안내</a></p><p>Portlane은 독립 오픈소스 프로젝트이며 OpenAI의 공식 서비스가 아닙니다.</p></footer></main>
 </body></html>

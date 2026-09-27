@@ -8,6 +8,19 @@ The repository's MIT license does not replace their licenses.
 
 Source: https://github.com/starlove7/spacedock
 
+Docker builds pinned commit `41df6ed1519242e742079c84989cd15b5a4e441b`.
+Portlane changes the approval presentation and adds static presentation routes;
+upstream OAuth request validation and token logic remain in place. The customized
+binary identifies its version as `0.1.6-portlane.1`.
+
+## Pretendard 1.3.9 — SIL Open Font License 1.1
+
+Source: https://github.com/orioncactus/pretendard/tree/v1.3.9
+The unmodified variable font is self-hosted. Full copyright and license notice:
+`licenses/Pretendard-OFL.txt`.
+
+## SpaceDock license text
+
 MIT License
 
 Copyright (c) 2026 starlove7

@@ -1,8 +1,23 @@
-# KC Web MCP
+# Portlane
 
 Self-hosted coding tools for ChatGPT developer mode, built on
 [SpaceDock](https://github.com/starlove7/spacedock). Each user installs this on
 their own server and connects using their own account.
+
+Portlane은 웹 채팅과 내 프로젝트 작업 공간을 잇는 독립 오픈소스 도구다.
+연결 승인 화면에서 작업 권한을 확인하고 서버 소유자 인증키(Owner token)로
+승인한다. OpenAI·ChatGPT 로고를 서비스 브랜드로 사용하지 않는다.
+
+## 승인 페이지
+
+- 연결 앱과 실제 OAuth 반환 호스트를 표시한다.
+- 파일·명령·Git 작업과 추가 작업 공간·작업 기록 권한을 설명한다.
+- 인증키 도움말, 표시/숨기기, 입력 오류, 승인 중 상태와 모바일 구성을 제공한다.
+- 외부 분석 도구나 외부 폰트 요청 없이 Pretendard를 자체 제공한다.
+- `ui/`는 화면만 확장하며, `scripts/customize.py`가 고정된 SpaceDock
+  소스 커밋에 이를 적용한다. 인증 요청 검증·PKCE·토큰 교환은 원본 로직이다.
+- 서버 루트 주소에는 설치·연결 안내가 있다. 유효한 OAuth 요청이 있을 때만
+  인증키 입력 폼을 표시한다.
 
 ## 검증 상태
 
@@ -26,7 +41,7 @@ OpenAI 공식 제품이 아니며 사용량 제한 우회, 계정 공유, 웹 �
 ```text
 ChatGPT 개발자 모드
   → HTTPS 터널
-  → SpaceDock OAuth 승인
+  → Portlane OAuth 승인 화면 (SpaceDock 인증)
   → kc_server의 전용 컨테이너
   → /workspace 프로젝트 파일·Git·Node.js·Python
 ```
