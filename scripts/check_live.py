@@ -57,7 +57,10 @@ def main():
         nonlocal sequence
         sequence+=1
         status,_,data=req('/mcp',{'jsonrpc':'2.0','id':sequence,'method':method,'params':params},authorized=True)
-        if status!=200 or 'error' in data: raise RuntimeError('RPC failed: '+method)
+        if status!=200 or 'error' in data:
+            error=data.get('error', {})
+            reason=error.get('message','') if isinstance(error,dict) else str(error)
+            raise RuntimeError(f'RPC failed: {method}; HTTP {status}; {reason}')
         return data['result']
     initialized=rpc('initialize',{'protocolVersion':'2025-03-26','capabilities':{},'clientInfo':{'name':'live-check','version':'1'}})
     check('public MCP initialization',initialized['serverInfo']['name']=='spacedock')
