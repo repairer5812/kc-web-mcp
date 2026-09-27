@@ -1,0 +1,8 @@
+node_modules/
+.env
+state/
+workspace/
+test-results/
+*.token
+__pycache__/
+DEPLOYMENT.local.md

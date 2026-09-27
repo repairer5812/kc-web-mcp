@@ -1,0 +1,22 @@
+name: Verify
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci --ignore-scripts
+      - run: bash -n scripts/entrypoint.sh scripts/install.sh
+      - run: python -m py_compile scripts/configure.py scripts/smoke_test.py
+      - run: python scripts/smoke_test.py node_modules/@starlove7/spacedock/npm/dist/linux-amd64/spacedock
+      - run: docker compose config --quiet
+      - run: docker compose build

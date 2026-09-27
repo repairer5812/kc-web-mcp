@@ -1,0 +1,31 @@
+name: kc-web-mcp
+services:
+  runtime:
+    build: .
+    init: false
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 256
+    mem_limit: ${MCP_MEMORY_LIMIT:-1g}
+    cpus: ${MCP_CPUS:-1}
+    environment:
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-}
+    volumes:
+      - state:/state
+      - workspace:/workspace
+    tmpfs:
+      - /tmp:uid=1000,gid=1000,mode=1777,size=512m
+    healthcheck:
+      test: [CMD, python3, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8766/healthz', timeout=5)"]
+      interval: 30s
+      timeout: 8s
+      retries: 3
+      start_period: 120s
+    logging:
+      driver: json-file
+      options: { max-size: 10m, max-file: '3' }
+volumes:
+  state:
+  workspace:

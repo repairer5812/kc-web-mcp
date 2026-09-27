@@ -1,0 +1,6 @@
+{
+  "name": "kc-web-mcp",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": { "@starlove7/spacedock": "0.1.6" }
+}

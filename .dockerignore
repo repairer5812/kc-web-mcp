@@ -1,0 +1,9 @@
+node_modules
+.env
+state
+workspace
+test-results
+.git
+*.token
+**/__pycache__
+DEPLOYMENT.local.md
