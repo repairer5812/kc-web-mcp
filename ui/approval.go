@@ -33,7 +33,7 @@ func (o *OAuthHTTP) registerPresentation(m *http.ServeMux) {
             if r.Method != "HEAD" { _, _ = w.Write(data) }
         })
     }
-    m.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+    m.HandleFunc("/{$}", func(w http.ResponseWriter, r *http.Request) {
         if r.URL.Path != "/" { http.NotFound(w, r); return }
         if !method(w, r, "GET, HEAD") { return }
         o.renderPresentation(w, r, approvalView{}, http.StatusOK)
