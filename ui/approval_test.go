@@ -8,7 +8,7 @@ import (
     "testing"
 )
 
-func TestPortlaneApprovalEscapesAndDoesNotEchoOwner(t *testing.T) {
+func TestWebJjonkuApprovalEscapesAndDoesNotEchoOwner(t *testing.T) {
     o, _, _ := oauthHTTPFixture(t)
     w := httptest.NewRecorder()
     q := url.Values{"state":{`"><script>alert(1)</script>`}, "owner_token":{"secret-must-not-appear"}, "redirect_uri":{"https://chatgpt.com/callback"}}
@@ -16,11 +16,11 @@ func TestPortlaneApprovalEscapesAndDoesNotEchoOwner(t *testing.T) {
     body := w.Body.String()
     if w.Code != 401 || !strings.Contains(body,"인증키가 일치하지 않습니다") { t.Fatal("missing approval error") }
     if strings.Contains(body, "secret-must-not-appear") || strings.Contains(body, "<script>alert(1)</script>") { t.Fatal("unsafe request reflection") }
-    if !strings.Contains(body, `name="state"`) || !strings.Contains(body, "Portlane") { t.Fatal("form state missing") }
+    if !strings.Contains(body, `name="state"`) || !strings.Contains(body, "WebJjonku") { t.Fatal("form state missing") }
     if w.Header().Get("Cache-Control") != "no-store" || !strings.Contains(w.Header().Get("Content-Security-Policy"), "frame-ancestors 'none'") { t.Fatal("missing headers") }
 }
 
-func TestPortlaneHomeIsNotAnApproval(t *testing.T) {
+func TestWebJjonkuHomeIsNotAnApproval(t *testing.T) {
     _, mux, _ := oauthHTTPFixture(t)
     w := httptest.NewRecorder()
     mux.ServeHTTP(w, httptest.NewRequest("GET", "/", nil))

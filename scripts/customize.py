@@ -14,5 +14,5 @@ anchor = '\tm.HandleFunc("/oauth/authorize", o.authorize)'
 assert text.count(anchor) == 1
 text = text.replace(anchor, anchor + '\n\to.registerPresentation(m)')
 source.write_text(text)
-for name in ('approval.go', 'approval_test.go', 'approval.html', 'approval.css', 'approval.js', 'portlane-font.woff2'):
+for name in ('approval.go', 'approval_test.go', 'approval.html', 'approval.css', 'approval.js', 'webjjonku-font.woff2'):
     (root / 'internal/mcp' / name).write_bytes((ui / name).read_bytes())

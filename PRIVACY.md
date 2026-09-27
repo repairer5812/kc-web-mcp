@@ -1,6 +1,6 @@
 # Privacy and data flow
 
-This project is software you install on your own server. The repository
+This project is software you install on your own PC or server. The repository
 maintainer does not operate a shared development service and receives no
 telemetry, project files, authentication tokens, or tool requests from it.
 
@@ -19,7 +19,7 @@ registrations, and authentication state. Docker keeps bounded service logs.
 There is no separate analytics collection. Operators are responsible for
 retention, backups, access control, and deletion of their own volumes.
 
-Each operator and user should use their own ChatGPT account and server.
+Each operator and user should use their own ChatGPT account and runtime.
 Do not share owner tokens or ChatGPT session credentials. This release is
 for a single trusted operator, not a multi-tenant hosting service.
 

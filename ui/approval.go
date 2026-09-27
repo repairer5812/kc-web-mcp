@@ -9,7 +9,7 @@ import (
     "strings"
 )
 
-//go:embed approval.html approval.css approval.js portlane-font.woff2
+//go:embed approval.html approval.css approval.js webjjonku-font.woff2
 var presentation embed.FS
 var approvalTemplate = template.Must(template.ParseFS(presentation, "approval.html"))
 
@@ -21,12 +21,12 @@ type approvalView struct {
 }
 
 func (o *OAuthHTTP) registerPresentation(m *http.ServeMux) {
-    for _, asset := range []string{"approval.css", "approval.js", "portlane-font.woff2"} {
+    for _, asset := range []string{"approval.css", "approval.js", "webjjonku-font.woff2"} {
         asset := asset
         m.HandleFunc("/assets/" + asset, func(w http.ResponseWriter, r *http.Request) {
             if !method(w, r, "GET, HEAD") { return }
             data, _ := presentation.ReadFile(asset)
-            types := map[string]string{"approval.css":"text/css; charset=utf-8", "approval.js":"text/javascript; charset=utf-8", "portlane-font.woff2":"font/woff2"}
+            types := map[string]string{"approval.css":"text/css; charset=utf-8", "approval.js":"text/javascript; charset=utf-8", "webjjonku-font.woff2":"font/woff2"}
             w.Header().Set("Content-Type", types[asset])
             w.Header().Set("Cache-Control", "public, max-age=3600")
             w.Header().Set("X-Content-Type-Options", "nosniff")

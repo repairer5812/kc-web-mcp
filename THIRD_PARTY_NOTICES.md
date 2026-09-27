@@ -9,9 +9,9 @@ The repository's MIT license does not replace their licenses.
 Source: https://github.com/starlove7/spacedock
 
 Docker builds pinned commit `41df6ed1519242e742079c84989cd15b5a4e441b`.
-Portlane changes the approval presentation and adds static presentation routes;
+WebJjonku changes the approval presentation and adds static presentation routes;
 upstream OAuth request validation and token logic remain in place. The customized
-binary identifies its version as `0.1.6-portlane.1`.
+binary identifies its version as `0.1.6-webjjonku.1`.
 
 ## Pretendard 1.3.9 — SIL Open Font License 1.1
 

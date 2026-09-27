@@ -1,148 +1,129 @@
-# Portlane
+# 웹쫀쿠 · WebJjonku
 
-Self-hosted coding tools for ChatGPT developer mode, built on
-[SpaceDock](https://github.com/starlove7/spacedock). Each user installs this on
-their own server and connects using their own account.
-
-Portlane은 웹 채팅과 내 프로젝트 작업 공간을 잇는 독립 오픈소스 도구다.
-연결 승인 화면에서 작업 권한을 확인하고 서버 소유자 인증키(Owner token)로
-승인한다. OpenAI·ChatGPT 로고를 서비스 브랜드로 사용하지 않는다.
-
-## 승인 페이지
-
-- 연결 앱과 실제 OAuth 반환 호스트를 표시한다.
-- 파일·명령·Git 작업과 추가 작업 공간·작업 기록 권한을 설명한다.
-- 인증키 도움말, 표시/숨기기, 입력 오류, 승인 중 상태와 모바일 구성을 제공한다.
-- 외부 분석 도구나 외부 폰트 요청 없이 Pretendard를 자체 제공한다.
-- `ui/`는 화면만 확장하며, `scripts/customize.py`가 고정된 SpaceDock
-  소스 커밋에 이를 적용한다. 인증 요청 검증·PKCE·토큰 교환은 원본 로직이다.
-- 서버 루트 주소에는 설치·연결 안내가 있다. 유효한 OAuth 요청이 있을 때만
-  인증키 입력 폼을 표시한다.
-
-## 검증 상태
-
-- 구현: SpaceDock 0.1.6 기반 Docker 배포 구성과 OAuth 인증, 파일 편집, 터미널 실행.
-- 검증: Windows 로컬에서 실제 HTTP MCP와 OAuth 통합 테스트 18개 통과.
-- 검증: Linux 읽기 전용·256MB 컨테이너에서 같은 통합 테스트 18개 통과.
-- 검증: 실제 원격 배포의 공개 HTTPS에서 OAuth·MCP·파일 읽기/쓰기·테스트 실행 11개 통과.
-- GitHub Actions에서 Linux 통합 테스트·Compose 검사·Docker 빌드 통과.
-- ChatGPT 계정 연결과 실제 대화 테스트는 별도 확인 항목이다. API 테스트 통과만으로 실제 대화 완료를 뜻하지 않는다.
-
-## 공개 프로젝트의 사용 범위
-
-본인 서버와 본인 ChatGPT 계정에서 공식 MCP 연결로 사용하는 개발 도구다.
-OpenAI 공식 제품이 아니며 사용량 제한 우회, 계정 공유, 웹 채팅 출력 수집,
-모델 접근 재판매 기능을 제공하지 않는다. GitHub 코드 공개와 ChatGPT 공개
-앱 디렉터리 등록은 별개다. [개인정보 안내](PRIVACY.md),
-[보안 범위](SECURITY.md), [라이선스 고지](THIRD_PARTY_NOTICES.md)를 확인한다.
-
-## 구성
+**웹 ChatGPT로 내 작업 공간의 파일을 수정하고 명령·테스트를 실행하는 도구.**
+[SpaceDock](https://github.com/starlove7/spacedock) 기반의 독립 오픈소스 프로젝트다.
 
 ```text
-ChatGPT 개발자 모드
-  → HTTPS 터널
-  → Portlane OAuth 승인 화면 (SpaceDock 인증)
-  → kc_server의 전용 컨테이너
-  → /workspace 프로젝트 파일·Git·Node.js·Python
+PC 브라우저의 ChatGPT → HTTPS·OAuth → 내 PC 또는 소형 서버의 Docker 작업 공간
 ```
 
-원격 개발은 `/workspace`에서 진행한다. Windows 작업 폴더가 자동으로 연결되는 구성은 아니다. 서버에 모델을 설치하지 않으며 이 MCP 런타임 자체에는 OpenAI 모델 API 키가 필요 없다. 별도 코딩 에이전트 호출 권한은 부여하지 않았다.
+## 어디에 설치하나요?
 
-## 설치
+- **내 PC — 기본 선택:** Windows/macOS/Linux. PC가 켜져 있고 Docker가 실행 중일 때 사용한다.
+- **소형 웹서버 — 상시 실행:** Linux 서버에 같은 구성을 설치한다. PC를 꺼도 서버는 실행된다.
 
-1. 본인 서버의 OS·메모리·디스크·기존 서비스·Docker 유무부터 확인한다.
-2. 공개 저장소를 서버의 새 전용 폴더로 복제한다.
+ChatGPT를 사용하는 화면과 작업 공간이 실행되는 위치는 별개다. 서버에 설치해도
+PC 브라우저에서 사용한다. 모바일 전용 기능과 사용자별 호스팅은 제공하지 않는다.
+ChatGPT 개발자 모드와 사용하려는 MCP 작업 권한이 계정에 있어야 한다.
+[현재 공식 지원 안내](https://help.openai.com/en/articles/12584461-developer-mode-and-mcp-apps-in-chatgpt)를 확인한다.
+이 런타임에는 모델 설치나 OpenAI 모델 API 키가 필요 없다.
+
+## AI에게 설치 맡기기
+
+아래 내용을 설치할 PC 또는 서버에 접근할 수 있는 AI에게 전달한다.
+
+> https://github.com/repairer5812/webjjonku 를 읽고 이 환경에 설치해줘.
+> README의 AI 설치 절차에 따라 환경 확인, 필요한 도구 설치, Docker 실행,
+> HTTPS 터널 공개, OAuth 연결 및 demo 검증까지 진행해줘.
+> 별도 요청이 없으면 현재 PC에 설치하고 임시 터널과 전용 Docker 볼륨을 사용해.
+> 이 설치에 필요한 변경과 HTTPS 공개를 승인하며, 선택 질문은 기본값으로 처리해.
+> 기존 파일·서비스·Docker 볼륨·인증키를 보존하고 비밀값은 채팅이나 로그에 출력하지 마.
+> 로그인, OS 승인, 재부팅 등 내가 직접 해야 하는 단계에서만 필요한 행동을 알려줘.
+> 검증 결과와 다음 실행·중지 방법을 짧게 보고해줘.
+
+### AI 설치 절차
+
+1. **환경 확인:** OS/CPU·여유 메모리/디스크, Git, Docker 및 Compose 확인.
+   Windows/macOS는 Docker Desktop의 Linux 엔진, Linux는 Docker Engine+Compose를 사용한다.
+   없는 도구는 공식 배포본으로 설치하고 실행한다. OS 권한·라이선스 동의·재부팅이
+   필요하면 사용자에게 해당 단계만 안내한다. 다른 설치 방식·도메인 선택 질문은 하지 않는다.
+2. **전용 폴더:** 저장소를 새 `webjjonku` 폴더에 복제한다. 이미 있으면 변경 상태를
+   확인하고 보존한다. 비밀파일이나 기존 프로젝트를 복사하지 않는다.
+3. **실행:** 아래 OS 명령으로 빌드·시작한다. 처음 빌드에는 이미지 다운로드와 저장 공간이
+   필요하다. 작은 서버는 `.env`에 `MCP_MEMORY_LIMIT=256m`, `MCP_CPUS=0.5`를 설정할 수 있다.
+   호스트 메모리와 컨테이너 제한은 별개이며 무거운 빌드에는 더 많은 자원이 필요하다.
+4. **자동 검증:** runtime이 healthy인지 확인하고 아래 `verify`를 실행한다. 실패하면
+   상태와 제한된 로그로 원인을 해결한다. 로그에 비밀값이 있으면 출력하지 않는다.
+5. **ChatGPT 연결:** 출력된 `/mcp` URL로 OAuth 앱을 등록한다. 브라우저 조작이 가능하고
+   사용자가 로그인해 있으면 직접 진행한다. Owner token은 캡처·채팅·명령 인수에 남기지 말고
+   해당 인스턴스의 검증된 승인 화면에만 입력한다. 자동화할 수 없으면 사용자에게 정확한
+   연결 절차만 안내한다. 계정에 기능이 없으면 설치 성공과 ChatGPT 연결 불가를 구분한다.
+6. **실제 대화 검증:** demo에서 아래 요청을 실행한다. HTTP 검사 통과를 실제 대화 성공으로
+   보고하지 않는다. 완료 시 설치 위치, URL, 검증 결과, 시작·중지 명령을 보고한다.
+
+## 직접 설치
 
 ```bash
-git clone https://github.com/repairer5812/kc-web-mcp.git
-cd kc-web-mcp
+git clone https://github.com/repairer5812/webjjonku.git
+cd webjjonku
 ```
 
-키·다른 프로젝트·인증 파일은 이 저장소에 넣지 않는다.
-3. Docker와 Compose가 설치된 서버에서 실행한다.
+Docker와 Compose가 설치·실행된 상태에서 진행한다.
+
+**Windows — PowerShell**
+
+```powershell
+.\scripts\pc.ps1 start
+.\scripts\pc.ps1 verify
+.\scripts\pc.ps1 connection
+```
+
+실행 정책이 차단하면 시스템 정책을 임의로 낮추지 말고 허용된 실행 방법을 사용한다.
+
+**macOS / Linux PC / Linux 소형 서버**
 
 ```bash
-cd ~/kc-web-mcp
 bash scripts/install.sh
-docker compose logs --tail 30 runtime
+docker compose exec -T runtime python3 /opt/kc-mcp/scripts/check_live.py
 docker compose exec -T runtime cat /state/connection-url.txt
 ```
 
-처음 실행하면 임시 `https://….trycloudflare.com/mcp` 주소가 발급된다. 주소는 재시작하면 바뀌므로 첫 연결 검증에 사용한다. 상태와 작업 파일은 Docker 볼륨에 보존된다. `docker compose down -v`는 상태와 작업물을 지우므로 사용하지 않는다.
+Linux에서 Docker 접근에 관리자 권한이 필요하면 운영 환경에 맞게 `sudo`를 사용한다.
+임시 HTTPS 주소는 재시작하면 바뀔 수 있다. 바뀌면 ChatGPT 연결 주소도 갱신한다.
 
-## ChatGPT 연결
+## ChatGPT 연결·사용
 
-1. 개발자 모드에서 MCP 연결 추가 화면을 연다.
-2. 위에서 읽은 전체 `/mcp` URL을 입력하고 OAuth 인증을 선택한다.
-3. 소유자 승인 화면이 열리면 아래 명령으로 **본인 터미널에서만** 읽은 토큰을 입력한다. 채팅·문서·로그에 토큰을 붙여 넣지 않는다.
+1. **PC의 ChatGPT 웹**에서 개발자 모드를 켜고 새 MCP 앱을 추가한다.
+2. `connection`에서 확인한 전체 `/mcp` URL을 입력하고 **OAuth**를 선택한다.
+3. 소유자 인증키는 본인 터미널에서 확인해 **해당 인스턴스의 승인 페이지에만** 입력한다.
 
 ```bash
 docker compose exec -T runtime cat /state/oauth-owner.token
 ```
 
-4. 새 대화에 MCP 연결을 추가하고 다음 요청으로 확인한다.
+4. 새 ChatGPT 대화에 연결한 앱을 선택하고 다음을 요청한다.
 
-> projects 루트의 demo 작업 공간을 열고 calculator.mjs와 테스트를 읽어줘. subtract(a,b)를 추가하고 테스트도 추가한 뒤 node --test를 실행하고 git diff를 보여줘. 커밋과 push는 하지 마.
+> projects 루트의 demo 작업 공간을 열고 calculator.mjs와 테스트를 읽어줘.
+> subtract(a,b)를 추가하고 테스트를 추가한 뒤 node --test와 git diff로 확인해줘.
+> 이미 구현되어 있다면 기존 테스트를 실행하고 확인해줘. 커밋과 push는 하지 마.
 
-실제 공개 도구 이름은 `workspace_list`, `workspace_open`, `read_file`, `file_edit`, `exec_command`, `session_observe`, `session_act` 등이다.
+프로젝트는 Docker의 `/workspace` 볼륨에 만들거나 저장소를 복제한다.
+**PC에 설치해도 기존 PC 폴더가 자동 연결되지는 않는다.** Node.js·Python·Git·ripgrep이 포함된다.
+SSH 키·홈 폴더·Docker 소켓은 연결하지 않는다.
 
-공개 HTTPS 경로 자체를 점검하려면 다음을 실행한다. 소유자 토큰을 화면에
-출력하지 않고 OAuth 승인·파일 읽기/쓰기·명령 실행을 확인한다.
+## 시작·중지·데이터 보존
 
-```bash
-docker compose exec -T runtime python3 - < scripts/check_live.py
-```
+| 작업 | Windows | macOS / Linux |
+|---|---|---|
+| 시작 | `.\scripts\pc.ps1 start` | `bash scripts/install.sh` |
+| 상태 | `.\scripts\pc.ps1 status` | `docker compose ps` |
+| 중지 | `.\scripts\pc.ps1 stop` | `docker compose stop` |
 
-## 고정 주소로 운영
+중지해도 인증 상태와 작업 파일은 유지된다. **`docker compose down -v`는 사용하지 않는다.**
+기존 `kc-web-mcp` 설치를 갱신할 때는 [데이터 보존 안내](docs/MIGRATION.md)를 먼저 읽는다.
+고정 주소가 필요할 때만 [고정 터널 설정](docs/STABLE_TUNNEL.md)을 사용한다.
 
-임시 터널 확인 후 본인 Cloudflare 계정의 Named Tunnel과 소유 도메인으로 바꾼다.
+## 검증과 사용 범위
 
-1. `.env.example`을 `.env`로 복사하고 `PUBLIC_BASE_URL=https://본인서브도메인`을 설정한다.
-2. Cloudflare 터널의 공개 호스트를 해당 도메인 → `http://127.0.0.1:8766`으로 설정하고 HTTP Host Header를 `localhost`로 지정한다. 터널 컨테이너는 런타임의 네트워크 공간을 공유한다. Go MCP SDK의 localhost Host 검사와 일치시키는 설정이다. 임시 터널에는 같은 설정이 환경변수로 적용된다.
-3. 터널 토큰을 `cloudflare-tunnel.token`에 저장한다. 파일을 Git에 올리거나 채팅에 공유하지 않는다.
-4. `bash scripts/install.sh --stable`로 실행하고 고정 `/mcp` URL을 ChatGPT에 등록한다.
+원본 OAuth/MCP 통합 검사 18개, 커스텀 컨테이너 검사 18개, 공개 HTTPS 검사 11개를
+검증했다. GitHub Actions가 컨테이너 빌드와 통합 검사를 수행한다.
+PC 실행 스크립트는 PowerShell 구문·명령 전달을 점검했다. Docker Desktop 실기 검증과
+각 사용자의 실제 ChatGPT 대화 검증은 별도다.
 
-Cloudflare 인증 비밀은 별도 터널 컨테이너에만 제공한다. MCP 컨테이너에 전달하지 않는다.
+파일 도구의 경로 검사는 셸을 격리하지 않는다. 셸은 해당 컨테이너의 상태와 네트워크에
+접근할 수 있다. 단일 신뢰 사용자용이며 서로 신뢰하지 않는 사용자는 인스턴스를 공유하지 않는다.
 
-## 운영
-
-```bash
-docker compose ps
-docker compose logs --tail 100 runtime
-docker compose exec -T runtime node --test /workspace/demo/calculator.test.mjs
-# 일시 중단; 볼륨은 유지
-docker compose stop
-```
-
-Node.js 22, Python 3, Git, ripgrep이 포함된다. 의존성은 작업 폴더 안에 설치하고 Python 패키지는 `.venv`를 사용한다. SSH 키나 서버의 전체 홈 디렉터리, Docker 소켓은 마운트하지 않는다.
-
-파일 도구는 허용 경로와 민감 파일을 검사하지만 **셸 명령은 컨테이너 사용자 권한으로 실행된다**. 파일 도구의 검사만으로 셸이 격리되는 것은 아니다. 호스트 파일 접근을 제한하는 실제 경계는 컨테이너이며, 외부 네트워크 접근은 가능하다. 같은 컨테이너의 프로젝트끼리도 접근할 수 있으므로 신뢰 수준이 다른 프로젝트는 별도 인스턴스에 둔다.
-
-## 재현 가능한 기능 검증
-
-```bash
-npm ci --ignore-scripts
-# Linux x64 기준; ARM 서버에서는 linux-arm64로 변경
-python3 scripts/smoke_test.py node_modules/@starlove7/spacedock/npm/dist/linux-amd64/spacedock
-```
-
-테스트는 임시 폴더에만 기록하며 실제 OAuth PKCE 교환·갱신, 미인증 차단, 파일 읽기·쓰기, 경로 이탈·민감 파일 차단, Node 테스트 실행을 확인한다. 토큰은 출력하지 않는다.
-
-## 약관과 라이선스
-
-OpenAI [App Developer Terms](https://openai.com/policies/developer-apps-terms/)는
-개발자 모드 커넥터와 MCP 앱 개발·공개를 다룬다. 이 프로젝트는 공식 MCP
-연결 경로를 사용한다. 이 사실이 모든 사용 방법의 계약 준수를 보장하지는
-않는다. 사용자는 당시의 약관, 정책, 계정 권한과 사용량 제한을 따라야 한다.
-계정 공유, 제한 우회, 웹 채팅 자동 수집 등은 이 프로젝트의 사용 범위에
-포함되지 않는다. 작성 설정·스크립트는 MIT이며 의존성의 라이선스는 별도로 유지한다.
-
-## 조사 근거
-
-- [DevSpace 원본](https://github.com/Waishnav/devspace): MCP 파일 편집·명령 실행 및 OAuth 구성 사례.
-- [SpaceDock 원본](https://github.com/starlove7/spacedock): 선택한 경량 Go 런타임. 검토 소스 커밋 `41df6ed1519242e742079c84989cd15b5a4e441b`, 배포 패키지 `0.1.6`.
-- [OpenAI 공식 연결 안내](https://developers.openai.com/plugins/deploy/connect-chatgpt): 개발자 모드·MCP HTTPS 연결.
-- [OpenAI 공식 인증 안내](https://developers.openai.com/plugins/build/auth): OAuth 기반 인증.
-- [Cloudflare Quick Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/trycloudflare/): 임시 URL은 테스트용이며 SSE를 지원하지 않음. 선택한 SpaceDock은 Stateless Streamable HTTP와 JSON 응답을 사용한다.
-
-서버에 올라갔다는 사실과 ChatGPT 웹 연결 완료는 각각 실제 확인 후 기록한다.
+OpenAI 공식 서비스가 아니다. 각자 계정의 권한·약관·사용 제한을 따른다.
+계정 공유·웹 출력 자동 수집·사용 제한 우회·모델 접근 재판매 기능은 제공하지 않는다.
+코드 공개와 ChatGPT 앱 디렉터리 등록은 별개다.
+[개인정보](PRIVACY.md) · [보안](SECURITY.md) · [MIT 및 의존성 고지](THIRD_PARTY_NOTICES.md)

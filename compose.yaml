@@ -1,7 +1,8 @@
-name: kc-web-mcp
+name: webjjonku
 services:
   runtime:
     build: .
+    image: webjjonku-runtime
     init: false
     restart: unless-stopped
     read_only: true

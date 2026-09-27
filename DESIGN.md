@@ -1,5 +1,5 @@
 ---
-name: Portlane
+name: WebJjonku
 description: 한국어 안내를 우선하는 독립 오픈소스 작업 공간
 colors:
   canvas: "#fff"
@@ -17,23 +17,23 @@ colors:
   inset: "#f6f8fb"
 typography:
   headline:
-    fontFamily: "Portlane, 'Malgun Gothic', sans-serif"
+    fontFamily: "WebJjonku, 'Malgun Gothic', sans-serif"
     fontSize: "36px"
     fontWeight: 750
     lineHeight: 1.3
     letterSpacing: "-0.03em"
   title:
-    fontFamily: "Portlane, 'Malgun Gothic', sans-serif"
+    fontFamily: "WebJjonku, 'Malgun Gothic', sans-serif"
     fontSize: "24px"
     fontWeight: 720
     lineHeight: 1.4
     letterSpacing: "-0.02em"
   body:
-    fontFamily: "Portlane, 'Malgun Gothic', sans-serif"
+    fontFamily: "WebJjonku, 'Malgun Gothic', sans-serif"
     fontSize: "16px"
     lineHeight: 1.55
   label:
-    fontFamily: "Portlane, 'Malgun Gothic', sans-serif"
+    fontFamily: "WebJjonku, 'Malgun Gothic', sans-serif"
     fontSize: "15px"
     fontWeight: 650
     lineHeight: 1.55
@@ -91,13 +91,13 @@ components:
     padding: "14px"
 ---
 
-# Design System: Portlane
+# Design System: WebJjonku
 
 ## Overview
 
 **Creative North Star: "명료한 작업 공간"**
 
-Portlane의 시각 언어는 읽기 쉬운 한국어와 절제된 선, 차가운 중립 배경으로 정보를 정돈한다. 흰 바탕과 남색 글자가 기본이며 파란색은 현재 상태와 주요 행동을 드러낸다. 설명은 충분한 행간으로 읽히고 입력과 행동은 경계선으로 구분된다.
+WebJjonku의 시각 언어는 읽기 쉬운 한국어와 절제된 선, 차가운 중립 배경으로 정보를 정돈한다. 흰 바탕과 남색 글자가 기본이며 파란색은 현재 상태와 주요 행동을 드러낸다. 설명은 충분한 행간으로 읽히고 입력과 행동은 경계선으로 구분된다.
 
 자체 심벌과 자체 제공 글꼴로 독립적인 정체성을 유지한다. OpenAI·ChatGPT 로고를 자체 브랜딩에 사용하지 않는다. 이 문서는 현재 구현에서 확인한 재사용 가능한 규칙을 기록한다. 개별 화면의 구성과 진행 순서는 `.impeccable/direction.md`에 남긴다.
 
@@ -115,7 +115,7 @@ Portlane의 시각 언어는 읽기 쉬운 한국어와 절제된 선, 차가운
 
 ### Primary
 
-- **Portlane Blue (`accent`)**: 자체 심벌, 현재 단계, 주요 버튼, 키보드 초점과 입력 커서.
+- **WebJjonku Blue (`accent`)**: 자체 심벌, 현재 단계, 주요 버튼, 키보드 초점과 입력 커서.
 - **Deep Action Blue (`accent-hover`)**: 주요 버튼에 포인터가 올라왔을 때.
 
 ### Neutral
@@ -132,7 +132,7 @@ Portlane의 시각 언어는 읽기 쉬운 한국어와 절제된 선, 차가운
 
 ## Typography
 
-**Display / Body Font:** 자체 제공 **Pretendard**, CSS에서 `Portlane`이라는 family로 등록. 대체 글꼴은 Malgun Gothic과 sans-serif다. 글꼴 파일은 `ui/portlane-font.woff2`이며 외부 폰트 요청 없이 제공한다. 가변 굵기 범위는 100–900, 로딩 방식은 `swap`이다.
+**Display / Body Font:** 자체 제공 **Pretendard**, CSS에서 `WebJjonku`이라는 family로 등록. 대체 글꼴은 Malgun Gothic과 sans-serif다. 글꼴 파일은 `ui/webjjonku-font.woff2`이며 외부 폰트 요청 없이 제공한다. 가변 굵기 범위는 100–900, 로딩 방식은 `swap`이다.
 
 **Code Font:** 시스템 ui-monospace / monospace.
 
@@ -193,7 +193,7 @@ Portlane의 시각 언어는 읽기 쉬운 한국어와 절제된 선, 차가운
 
 ### Don't:
 
-- **Don't** OpenAI·ChatGPT 로고를 Portlane의 자체 브랜드로 사용한다.
+- **Don't** OpenAI·ChatGPT 로고를 WebJjonku의 자체 브랜드로 사용한다.
 - **Don't** 오류나 진행 상태를 색만으로 전달한다.
 - **Don't** 외부 폰트 요청을 추가하거나 한국어 글리프를 확인하지 않은 장식 글꼴로 바꾼다.
 - **Don't** 펼침 도움말을 위해 필수 안내나 주요 행동을 숨긴다.

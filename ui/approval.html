@@ -2,24 +2,24 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{if .Pending}}연결 승인{{else}}내 작업 공간 연결{{end}} · Portlane</title>
+<title>{{if .Pending}}연결 승인{{else}}내 작업 공간 연결{{end}} · WebJjonku</title>
 <link rel="stylesheet" href="/assets/approval.css"><script src="/assets/approval.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <aside class="sidebar">
-<a class="brand" href="/" aria-label="Portlane 홈"><svg aria-hidden="true" viewBox="0 0 32 32"><path d="M6 13v15M16 7v19M26 3v17"/></svg><span>Portlane</span></a>
-<div class="intro"><h2>내 작업 공간으로 연결</h2><p>채팅에서 시작한 작업을<br>내 서버에서 이어가세요.</p></div>
+<a class="brand" href="/" aria-label="웹쫀쿠 홈"><svg aria-hidden="true" viewBox="0 0 32 32"><path d="M6 13v15M16 7v19M26 3v17"/></svg><span>웹쫀쿠</span></a>
+<div class="intro"><h2>내 작업 공간으로 연결</h2><p>채팅에서 시작한 작업을<br>내 작업 공간에서 이어가세요.</p></div>
 <ol class="steps" aria-label="연결 과정">
 <li class="complete"><span class="step-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 12 3 3 7-7"/></svg></span><div><strong>요청 확인</strong><p>{{if .Pending}}연결 정보를 검토합니다.{{else}}채팅에서 연결을 시작합니다.{{end}}</p></div></li>
-<li class="current" {{if .Pending}}aria-current="step"{{end}}><span class="step-mark" aria-hidden="true"><span></span></span><div><strong>소유자 인증</strong><p>서버 소유자 인증키를 입력합니다.</p></div></li>
+<li class="current" {{if .Pending}}aria-current="step"{{end}}><span class="step-mark" aria-hidden="true"><span></span></span><div><strong>소유자 인증</strong><p>작업 공간 소유자 인증키를 입력합니다.</p></div></li>
 <li><span class="step-mark" aria-hidden="true"></span><div><strong>채팅으로 돌아가기</strong><p>연결을 완료하고 돌아갑니다.</p></div></li>
 </ol>
-<footer class="side-footer"><div><a href="https://github.com/repairer5812/kc-web-mcp" target="_blank" rel="noopener noreferrer">소스 코드</a><span aria-hidden="true">·</span><a href="https://github.com/repairer5812/kc-web-mcp/blob/main/PRIVACY.md" target="_blank" rel="noopener noreferrer">개인정보 안내</a></div><p>Portlane은 독립 오픈소스 프로젝트이며<br>OpenAI의 공식 서비스가 아닙니다.</p></footer>
+<footer class="side-footer"><div><a href="https://github.com/repairer5812/webjjonku" target="_blank" rel="noopener noreferrer">소스 코드</a><span aria-hidden="true">·</span><a href="https://github.com/repairer5812/webjjonku/blob/main/PRIVACY.md" target="_blank" rel="noopener noreferrer">개인정보 안내</a></div><p>웹쫀쿠는 독립 오픈소스 프로젝트이며<br>OpenAI의 공식 서비스가 아닙니다.</p></footer>
 </aside>
 <main id="main">
 <p class="top-note">웹 채팅에서 이어가는 내 프로젝트 작업 공간</p>
-<header class="page-heading"><h1>{{if .Pending}}연결 요청을 확인하세요{{else}}내 서버와 채팅을 연결하세요{{end}}</h1><p>웹 채팅에서 프로젝트 파일을 수정하고 테스트를 실행합니다.</p></header>
+<header class="page-heading"><h1>{{if .Pending}}연결 요청을 확인하세요{{else}}내 작업 공간과 채팅을 연결하세요{{end}}</h1><p>웹 채팅에서 프로젝트 파일을 수정하고 테스트를 실행합니다.</p></header>
 {{if .Pending}}<dl class="request"><div><dt>연결 요청</dt><dd class="connection-target"><span>{{.Client}}</span><span class="callback-host">승인 후 반환 주소: {{.Destination}}</span></dd></div><div><dt>범위</dt><dd>프로젝트 전용 작업 공간</dd></div></dl>{{else}}<div class="start-note"><p>채팅 서비스의 MCP 설정에 이 서버를 추가하면 연결 요청이 이곳에 표시됩니다.</p><p>지금은 승인 대기 중인 연결 요청이 없습니다.</p></div>{{end}}
 <section aria-labelledby="permissions-title" class="permissions"><h2 id="permissions-title">이 연결에 허용되는 작업</h2><ul class="permission-list">
 <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5Z M14 3v5h5 M8 12h8 M8 16h5"/></svg><strong>파일 읽기·수정</strong><p>작업 공간의 파일을 읽고 수정하거나 새로 만듭니다.</p></li>
@@ -28,16 +28,16 @@
 </ul><p class="authority-note"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v6 M12 16v1"/></svg><span>명령 실행은 작업 공간과 실행 환경을 변경할 수 있는 권한입니다.</span></p>
 <details class="extra-permissions"><summary>추가 작업 권한 확인</summary><p>작업 공간 열기·관리와 작업 기록(recall) 읽기·쓰기도 허용됩니다. 파일 도구의 경로 제한은 셸 명령에 동일하게 적용되지 않습니다.</p></details></section>
 {{if .Pending}}
-<section class="approval" aria-labelledby="owner-title"><h2 id="owner-title">서버 소유자 인증</h2>
+<section class="approval" aria-labelledby="owner-title"><h2 id="owner-title">작업 공간 소유자 인증</h2>
 <form method="post" action="/oauth/authorize" id="approval-form">
 {{range .Fields}}<input type="hidden" name="{{.Name}}" value="{{.Value}}">{{end}}
 <div class="owner-panel">
 {{if .Invalid}}<div class="error" role="alert"><strong>인증키가 일치하지 않습니다.</strong><p>이 서버의 Owner token을 다시 확인하고 붙여넣으세요.</p></div>{{end}}
-<label for="owner-token">Owner token</label><div class="token-field"><input id="owner-token" name="owner_token" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" required aria-describedby="token-help" placeholder="서버의 인증키를 붙여넣으세요" {{if .Invalid}}aria-invalid="true" autofocus{{end}}><button class="reveal" type="button" aria-label="인증키 표시" aria-pressed="false" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
-<p id="token-help">ChatGPT 비밀번호가 아닌 서버 소유자 인증키입니다.</p>
-<details class="token-guide"><summary>인증키는 어디서 찾나요?</summary><p>서버의 Portlane 설치 폴더에서 다음 명령으로 확인합니다. 인증키는 이 서버의 승인 화면에만 입력하세요.</p><code>sudo docker compose exec runtime cat /state/oauth-owner.token</code><p>서버 접근 권한이 없다면 운영자에게 연결 승인을 요청하세요.</p></details>
-</div><div class="actions"><a class="cancel" href="/">서버 홈으로 돌아가기</a><button class="primary" type="submit"><span>연결 승인하기</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14 m-5-5 5 5-5 5"/></svg></button></div>
+<label for="owner-token">Owner token</label><div class="token-field"><input id="owner-token" name="owner_token" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" required aria-describedby="token-help" placeholder="작업 공간의 인증키를 붙여넣으세요" {{if .Invalid}}aria-invalid="true" autofocus{{end}}><button class="reveal" type="button" aria-label="인증키 표시" aria-pressed="false" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+<p id="token-help">ChatGPT 비밀번호가 아닌 작업 공간 소유자 인증키입니다.</p>
+<details class="token-guide"><summary>인증키는 어디서 찾나요?</summary><p>PC 또는 서버의 웹쫀쿠 설치 폴더에서 다음 명령으로 확인합니다. 인증키는 이 서버의 승인 화면에만 입력하세요.</p><code>docker compose exec runtime cat /state/oauth-owner.token</code><p>서버 접근 권한이 없다면 운영자에게 연결 승인을 요청하세요.</p></details>
+</div><div class="actions"><a class="cancel" href="/">홈으로 돌아가기</a><button class="primary" type="submit"><span>연결 승인하기</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14 m-5-5 5 5-5 5"/></svg></button></div>
 </form></section>
-{{else}}<div class="actions landing-actions"><a class="primary" href="https://github.com/repairer5812/kc-web-mcp#readme" target="_blank" rel="noopener noreferrer">설치·연결 안내 보기<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14 m-5-5 5 5-5 5"/></svg></a></div>{{end}}
-<footer class="mobile-footer"><p><a href="https://github.com/repairer5812/kc-web-mcp" target="_blank" rel="noopener noreferrer">소스 코드</a> · <a href="https://github.com/repairer5812/kc-web-mcp/blob/main/PRIVACY.md" target="_blank" rel="noopener noreferrer">개인정보 안내</a></p><p>Portlane은 독립 오픈소스 프로젝트이며 OpenAI의 공식 서비스가 아닙니다.</p></footer></main>
+{{else}}<div class="actions landing-actions"><a class="primary" href="https://github.com/repairer5812/webjjonku#readme" target="_blank" rel="noopener noreferrer">설치·연결 안내 보기<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14 m-5-5 5 5-5 5"/></svg></a></div>{{end}}
+<footer class="mobile-footer"><p><a href="https://github.com/repairer5812/webjjonku" target="_blank" rel="noopener noreferrer">소스 코드</a> · <a href="https://github.com/repairer5812/webjjonku/blob/main/PRIVACY.md" target="_blank" rel="noopener noreferrer">개인정보 안내</a></p><p>웹쫀쿠는 독립 오픈소스 프로젝트이며 OpenAI의 공식 서비스가 아닙니다.</p></footer></main>
 </body></html>

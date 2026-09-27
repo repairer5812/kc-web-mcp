@@ -7,7 +7,7 @@ COPY scripts/customize.py /customize.py
 COPY ui /ui
 RUN python3 /customize.py /src /ui
 WORKDIR /src
-RUN go test ./internal/mcp && CGO_ENABLED=0 go build -trimpath -ldflags '-s -w -X github.com/starlove7/spacedock/internal/buildinfo.Version=0.1.6-portlane.1' -o /portlane ./cmd/spacedock
+RUN go test ./internal/mcp && CGO_ENABLED=0 go build -trimpath -ldflags '-s -w -X github.com/starlove7/spacedock/internal/buildinfo.Version=0.1.6-webjjonku.1' -o /webjjonku ./cmd/spacedock
 FROM node:22-bookworm-slim
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates git python3 python3-venv ripgrep bash tini \
@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /opt/kc-mcp
 COPY package.json package-lock.json ./
 RUN npm ci --ignore-scripts
-COPY --from=branded-runtime /portlane /usr/local/bin/spacedock
+COPY --from=branded-runtime /webjjonku /usr/local/bin/spacedock
 COPY --from=tunnel /usr/local/bin/cloudflared /usr/local/bin/cloudflared
 COPY scripts /opt/kc-mcp/scripts
 COPY LICENSE THIRD_PARTY_NOTICES.md /opt/kc-mcp/
