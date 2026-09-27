@@ -8,7 +8,10 @@ their own server and connects using their own account.
 
 - 구현: SpaceDock 0.1.6 기반 Docker 배포 구성과 OAuth 인증, 파일 편집, 터미널 실행.
 - 검증: Windows 로컬에서 실제 HTTP MCP와 OAuth 통합 테스트 18개 통과.
-- Docker 빌드·원격 운영·ChatGPT 웹 실제 연결은 별도 확인 항목이다. 기능 테스트 통과만으로 실제 연결 완료를 뜻하지 않는다.
+- 검증: Linux 읽기 전용·256MB 컨테이너에서 같은 통합 테스트 18개 통과.
+- 검증: 실제 원격 배포의 공개 HTTPS에서 OAuth·MCP·파일 읽기/쓰기·테스트 실행 11개 통과.
+- GitHub Actions에서 Linux 통합 테스트·Compose 검사·Docker 빌드 통과.
+- ChatGPT 계정 연결과 실제 대화 테스트는 별도 확인 항목이다. API 테스트 통과만으로 실제 대화 완료를 뜻하지 않는다.
 
 ## 공개 프로젝트의 사용 범위
 
@@ -67,6 +70,13 @@ docker compose exec -T runtime cat /state/oauth-owner.token
 > projects 루트의 demo 작업 공간을 열고 calculator.mjs와 테스트를 읽어줘. subtract(a,b)를 추가하고 테스트도 추가한 뒤 node --test를 실행하고 git diff를 보여줘. 커밋과 push는 하지 마.
 
 실제 공개 도구 이름은 `workspace_list`, `workspace_open`, `read_file`, `file_edit`, `exec_command`, `session_observe`, `session_act` 등이다.
+
+공개 HTTPS 경로 자체를 점검하려면 다음을 실행한다. 소유자 토큰을 화면에
+출력하지 않고 OAuth 승인·파일 읽기/쓰기·명령 실행을 확인한다.
+
+```bash
+docker compose exec -T runtime python3 - < scripts/check_live.py
+```
 
 ## 고정 주소로 운영
 
