@@ -6,3 +6,6 @@ test-results/
 *.token
 __pycache__/
 DEPLOYMENT.local.md
+.impeccable/review/
+.impeccable/build/
+.impeccable/mocks/

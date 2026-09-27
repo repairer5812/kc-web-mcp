@@ -7,3 +7,6 @@ test-results
 *.token
 **/__pycache__
 DEPLOYMENT.local.md
+.impeccable
+PRODUCT.md
+DESIGN.md
